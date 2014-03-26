@@ -1,0 +1,86 @@
+date/time         : 2014-03-24, 23:31:54, 565ms
+computer name     : LAIDBACK-PC
+user name         : Peter
+registered owner  : Peter
+operating system  : Windows 7 x64 Service Pack 1 build 7601
+system language   : English
+system up time    : 11 hours 53 minutes
+program up time   : 6 seconds
+processors        : 2x Pentium(R) Dual-Core CPU T4400 @ 2.20GHz
+physical memory   : 944/3003 MB (free/total)
+free disk space   : (C:) 11.81 GB
+display mode      : 1366x768, 32 bit
+process id        : $1930
+allocated memory  : 20.71 MB
+command line      : C:\xampp\sendmail\sendmail.exe -t
+executable        : sendmail.exe
+exec. date/time   : 2011-06-18 01:10
+compiled with     : Delphi 2006/07
+madExcept version : 3.0l
+callstack crc     : $297aecaf, $1d2d6a96, $1d2d6a96
+exception number  : 1
+exception class   : EIdConnClosedGracefully
+exception message : Connection Closed Gracefully.
+
+main thread ($4d0):
+0043e503 +002f sendmail.exe IdIOHandler      1929  +23 TIdIOHandler.RaiseConnClosedGracefully
+00440d55 +0051 sendmail.exe IdIOHandlerStack  396  +17 TIdIOHandlerStack.CheckForDisconnect
+0043eee7 +002b sendmail.exe IdIOHandler      2384   +2 TIdIOHandler.WriteDirect
+0043ebc6 +0032 sendmail.exe IdIOHandler      2264   +4 TIdIOHandler.Write
+0043cd64 +0070 sendmail.exe IdIOHandler       962   +6 TIdIOHandler.Write
+0043df7c +0040 sendmail.exe IdIOHandler      1646   +2 TIdIOHandler.WriteLn
+0043ff76 +004a sendmail.exe IdTCPConnection   584   +3 TIdTCPConnection.SendCmd
+0044020e +0056 sendmail.exe IdTCPConnection   723   +4 TIdTCPConnection.SendCmd
+0045ac17 +0017 sendmail.exe IdSMTP            394   +2 TIdSMTP.DisconnectNotifyPeer
+0043fe12 +002a sendmail.exe IdTCPConnection   519   +5 TIdTCPConnection.Disconnect
+0045aea0 +0018 sendmail.exe IdSMTP            509   +2 TIdSMTP.Disconnect
+00440598 +0004 sendmail.exe IdTCPConnection   857   +0 TIdTCPConnection.Disconnect
+00459ff5 +00a9 sendmail.exe IdSMTPBase        407  +24 TIdSMTPBase.StartTLS
+0045a8bd +0039 sendmail.exe IdSMTP            312  +11 TIdSMTP.Authenticate
+004b5f81 +10cd sendmail.exe sendmail          822 +340 initialization
+74f93368 +0010 kernel32.dll                            BaseThreadInitThunk
+
+thread $190:
+76f81f3f +0b ntdll.dll     NtWaitForWorkViaWorkerFactory
+74f93368 +10 kernel32.dll  BaseThreadInitThunk
+
+thread $1640:
+76f80156 +0e ntdll.dll     NtWaitForMultipleObjects
+74f93368 +10 kernel32.dll  BaseThreadInitThunk
+
+stack dump:
+0018ee1c  08 e5 43 00 de fa ed 0e - 01 00 00 00 07 00 00 00  ..C.............
+0018ee2c  30 ee 18 00 08 e5 43 00 - e0 51 fa 01 01 ca fa 01  0.....C..Q......
+0018ee3c  b0 f4 f3 01 94 34 46 00 - 5c ee 18 00 4c ee 18 00  .....4F.\...L...
+0018ee4c  74 ee 18 00 c8 4b 40 00 - 5c ee 18 00 00 00 00 00  t....K@.\.......
+0018ee5c  ac ee 18 00 5a 0d 44 00 - 01 00 00 00 b0 f4 f3 01  ....Z.D.........
+0018ee6c  c0 ca fa 01 ea ee 43 00 - d0 ee 18 00 c8 4b 40 00  ......C......K@.
+0018ee7c  ac ee 18 00 20 ab fb 01 - c0 ca fa 01 b0 f4 f3 01  ................
+0018ee8c  b4 ee 18 00 01 00 00 00 - e1 38 42 00 d0 ee 18 00  .........8B.....
+0018ee9c  24 39 42 00 2c 39 42 00 - 06 00 00 00 00 00 00 00  $9B.,9B.........
+0018eeac  c4 ee 18 00 cb eb 43 00 - 00 00 00 00 00 ab fb 01  ......C.........
+0018eebc  94 34 46 00 ff ff ff ff - f0 ee 18 00 6a cd 43 00  .4F.........j.C.
+0018eecc  00 00 00 00 fc ee 18 00 - c8 4b 40 00 f0 ee 18 00  .........K@.....
+0018eedc  28 ac 45 00 b0 f4 f3 01 - 94 34 46 00 00 00 00 00  (.E......4F.....
+0018eeec  40 cc fa 01 1c ef 18 00 - 82 df 43 00 00 00 00 00  @.........C.....
+0018eefc  28 ef 18 00 c8 4b 40 00 - 1c ef 18 00 94 34 46 00  (....K@......4F.
+0018ef0c  00 00 00 00 50 f3 f3 01 - 00 00 00 00 00 00 00 00  ....P...........
+0018ef1c  48 ef 18 00 7c ff 43 00 - 00 00 00 00 58 ef 18 00  H...|.C.....X...
+0018ef2c  c8 4b 40 00 48 ef 18 00 - 00 00 00 00 dd 00 f9 01  .K@.H...........
+0018ef3c  34 a5 45 00 70 ef 18 00 - 00 00 00 00 78 ef 18 00  4.E.p.......x...
+0018ef4c  14 02 44 00 00 00 00 00 - 00 00 00 00 8c ef 18 00  ..D.............
+
+disassembling:
+[...]
+0043e4ef        call    -$36f9c ($407558)      ; System.LoadResString
+0043e4f4        mov     ecx, [ebp-4]
+0043e4f7        mov     dl, 1
+0043e4f9        mov     eax, [$41f6b4]
+0043e4fe        call    -$1eb07 ($41f9fc)      ; IdException.EIdException.Create
+0043e503      > call    -$3981c ($404cec)      ; System.@RaiseExcept
+0043e508 1930   xor     eax, eax
+0043e50a        pop     edx
+0043e50b        pop     ecx
+0043e50c        pop     ecx
+0043e50d        mov     fs:[eax], edx
+[...]
