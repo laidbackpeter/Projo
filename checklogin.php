@@ -28,10 +28,19 @@ $count=mysql_num_rows($result);
 
 // If result matched $myusername and $mypassword, table row must be 1 row
 if($count==1){
-$_SESSION['user']=$myusername;
-header("location:index.php");
-}
+    $_SESSION['user']=$myusername;
+
+    if ($myusername == "admin"){
+        header("location:indexAdmin.php");
+    }else {
+    header("location:index.php");
+        }
+    
+    }
 else {
 echo "Wrong Username or Password";
-}
+    }
+
+
+
 ?>

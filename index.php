@@ -42,6 +42,9 @@
 				<li>
 					<a href="settings.php"><img src="icons/settings.png" alt="Settings" class="ui-li-icon">Settings</a>
 				</li>
+                                <li>
+					<a href="reachUs.php"><img src="icons/reachUs.png" alt="Reach Us" class="ui-li-icon">Contact Us</a>
+				</li>
 			</ul>
 
 			</br></br>
