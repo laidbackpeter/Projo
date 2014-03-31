@@ -9,7 +9,7 @@ twitter = Twython('FtZZaNguERiYnpVdrIAJDw', 'XDFbwmey7VF726IS14ky5WzNXiQEcyvioS5
 db = MySQLdb.connect('127.0.0.1', 'peter', 'ndesh0140', 'vigil')
 
 def res():
-    res = requests.get('http://localhost/vigil/display.php')
+    res = requests.get('http://localhost/vigil/notificationTextEmail.php')
     return res
 
 
