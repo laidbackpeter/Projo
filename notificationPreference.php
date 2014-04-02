@@ -10,52 +10,60 @@
         <script src="HighCharts/js/highcharts.js"></script>
         <script src="HighCharts/js/modules/exporting.js"></script>
         <script>
+            var none,email,both, sms;
+                      
             $(function () {
-                $('#container').highcharts({
-                    chart: {
-                        plotBackgroundColor: null,
-                        plotBorderWidth: null,
-                        plotShadow: false
-                    },
-                    title: {
-                        text: 'Browser market shares at a specific website, 2010'
-                    },
-                    tooltip: {
-                        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-                    },
-                    plotOptions: {
-                        pie: {
-                            allowPointSelect: true,
-                            cursor: 'pointer',
-                            dataLabels: {
-                                enabled: true,
-                                color: '#000000',
-                                connectorColor: '#000000',
-                                format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+                
+                $.getJSON('/vigil/notificationPreferenceChart.php', function(data){ 
+                        
+                    none = data.none;
+                    email =  data.email;
+                    both = data.both;
+                    sms = data.sms;
+                    
+                    $('#container').highcharts({
+                        chart: {
+                            plotBackgroundColor: null,
+                            plotBorderWidth: null,
+                            plotShadow: false
+                        },
+                        title: {
+                            text: 'Notification mode preference'
+                        },
+                        tooltip: {
+                            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                        },
+                        plotOptions: {
+                            pie: {
+                                allowPointSelect: true,
+                                cursor: 'pointer',
+                                dataLabels: {
+                                    enabled: true,
+                                    color: '#000000',
+                                    connectorColor: '#000000',
+                                    format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+                                }
                             }
-                        }
-                    },
-                    series: [{
-                            type: 'pie',
-                            name: 'Browser share',
-                            data: [
-                                ['Firefox',   45.0],
-                                ['IE',       26.8],
-                                {
-                                    name: 'Chrome',
-                                    y: 12.8,
-                                    sliced: true,
-                                    selected: true
-                                },
-                                ['Safari',    8.5],
-                                ['Opera',     6.2],
-                                ['Others',   0.7]
-                            ]
-                        }]
+                        },
+                        series: [{
+                                type: 'pie',
+                                name: 'Notification pref',
+                                data: [
+                                    ['Email',   email],
+                                    ['SMS',       sms],
+                                    ['None',       none],
+                                    ['Both',       both],
+
+                                
+                                ]
+                            }]
+                    });
                 });
+                            
             });
+                
     
-    
+            //lert(email);
         </script>
         <style>
             .footer-wrapper {
@@ -70,7 +78,7 @@
         <div data-role="header" id="header" class="ui-header ui-bar-a" role="banner">
             <a href="#" class="ui-btn-left ui-btn ui-btn-icon-left ui-btn-corner-all ui-shadow ui-btn-up-a" data-rel="back" data-icon="arrow-l" data-theme="a"><span class="ui-btn-inner ui-btn-corner-all" aria-hidden="true"><span class="ui-btn-text">Back</span><span class="ui-icon ui-icon-arrow-l ui-icon-shadow"></span></span></a>
             <h1 class="ui-title" tabindex="0" role="heading" aria-level="1">Notification Pref</h1>
-           
+
         </div><!-- /header -->
 
         <br>
@@ -85,5 +93,5 @@
         </div>
 
 
-</body>
+    </body>
 </html>

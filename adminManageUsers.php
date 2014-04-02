@@ -44,7 +44,7 @@
         <div data-role="content">
 
             <h3> Users </h3>
-            <div class=ui-grid-b>
+            <div class= ui-grid-b>
                 <div class="ui-block-a odd">Elem 1.1</div>
                 <div class="ui-block-b odd">Elem 1.2</div>
                 <div class="ui-block-c odd">Elem 1.3</div>

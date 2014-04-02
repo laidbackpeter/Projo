@@ -10,43 +10,68 @@
         <script src="HighCharts/js/highcharts.js"></script>
         <script src="HighCharts/js/modules/exporting.js"></script>
         <script type="text/javascript">
-           $(function () {
+            var EMS_KENYA_bombing, EMS_KENYA_accident, EMS_KENYA_shooting, EMS_KENYA_fire, EMS_KENYA_Blood;
+            var CodeBlackMobAlt_bombing, CodeBlackMobAlt_accident, CodeBlackMobAlt_shooting, CodeBlackMobAlt_fire, CodeBlackMobAlt_Blood;
+            var KenyaRedCross_bombing, KenyaRedCross_accident, KenyaRedCross_shooting, KenyaRedCross_fire, KenyaRedCross_Blood;
+            
+            $(function () {
                
-                $('#container').highcharts({
-                    chart: {
-                        type: 'bar'
-                    },
-                    title: {
-                        text: 'Stacked bar chart'
-                    },
-                    xAxis: {
-                        categories: ['Apples', 'Oranges', 'Pears', 'Grapes', 'Bananas']
-                    },
-                    yAxis: {
-                        min: 0,
+                $.getJSON('/vigil/alertStatsChart.php', function(data){ 
+                    
+                    EMS_KENYA_bombing = data.EMS_KENYA_bombing;
+                    EMS_KENYA_accident = data.EMS_KENYA_accident;
+                    EMS_KENYA_shooting = data.EMS_KENYA_shooting;
+                    EMS_KENYA_fire = data.EMS_KENYA_fire;
+                    EMS_KENYA_Blood = data.EMS_KENYA_Blood;
+                    CodeBlackMobAlt_bombing = data.CodeBlackMobAlt_bombing;
+                    CodeBlackMobAlt_accident = data.CodeBlackMobAlt_accident;
+                    CodeBlackMobAlt_shooting = data.CodeBlackMobAlt_shooting;
+                    CodeBlackMobAlt_fire = data.CodeBlackMobAlt_fire;
+                    CodeBlackMobAlt_Blood = data.CodeBlackMobAlt_Blood;
+                    KenyaRedCross_bombing = data.KenyaRedCross_bombing;
+                    KenyaRedCross_accident = data.KenyaRedCross_accident;
+                    KenyaRedCross_shooting = data.KenyaRedCross_shooting;
+                    KenyaRedCross_fire = data.KenyaRedCross_fire;
+                    KenyaRedCross_Blood = data.KenyaRedCross_Blood;  
+                    
+                   
+               
+                    $('#container').highcharts({
+                        chart: {
+                            type: 'bar'
+                        },
                         title: {
-                            text: 'Total fruit consumption'
-                        }
-                    },
-                    legend: {
-                        backgroundColor: '#FFFFFF',
-                        reversed: true
-                    },
-                    plotOptions: {
-                        series: {
-                            stacking: 'normal'
-                        }
-                    },
-                    series: [{
-                            name: 'John',
-                            data: [5, 3, 4, 7, 2]
-                        }, {
-                            name: 'Jane',
-                            data: [2, 2, 3, 2, 1]
-                        }, {
-                            name: 'Joe',
-                            data: [3, 4, 4, 2, 5]
-                        }]
+                            text: ''
+                        },
+                        xAxis: {
+                            categories: ['Bombing', 'Accident', 'Shooting', 'Fire', 'Blood Donation']
+                        },
+                        yAxis: {
+                            min: 0,
+                            title: {
+                                text: 'Sum'
+                            }
+                        },
+                        legend: {
+                            backgroundColor: '#FFFFFF',
+                            reversed: true
+                        },
+                        plotOptions: {
+                            series: {
+                                stacking: 'normal'
+                            }
+                        },
+                        series: [{
+                                name: '@EMS_KENYA',
+                                data: [EMS_KENYA_bombing, EMS_KENYA_accident,EMS_KENYA_shooting,EMS_KENYA_fire,EMS_KENYA_Blood]
+                            }, {
+                                name: '@CodeBlackMobAlt',
+                                data: [CodeBlackMobAlt_bombing, CodeBlackMobAlt_accident,CodeBlackMobAlt_shooting,CodeBlackMobAlt_fire,CodeBlackMobAlt_Blood]
+                            }, {
+                                name: '@KenyaRedCross',
+                                data: [KenyaRedCross_bombing,KenyaRedCross_accident,KenyaRedCross_shooting,KenyaRedCross_fire,KenyaRedCross_Blood]
+                            }]
+                    });
                 });
             });
     
@@ -65,7 +90,7 @@
         <div data-role="header" id="header" class="ui-header ui-bar-a" role="banner">
             <a href="#" class="ui-btn-left ui-btn ui-btn-icon-left ui-btn-corner-all ui-shadow ui-btn-up-a" data-rel="back" data-icon="arrow-l" data-theme="a"><span class="ui-btn-inner ui-btn-corner-all" aria-hidden="true"><span class="ui-btn-text">Back</span><span class="ui-icon ui-icon-arrow-l ui-icon-shadow"></span></span></a>
             <h1 class="ui-title" tabindex="0" role="heading" aria-level="1">Danger Stats</h1>
-           
+
         </div><!-- /header -->
 
         <br>
