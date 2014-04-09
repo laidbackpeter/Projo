@@ -24,25 +24,25 @@
 			<ul data-role="listview" data-inset="true" data-filter="false">
 
 				<li>
-					<a href="activeWarnings.php"><img src="icons/activeWarnings.png" alt="Active Warnings" class="ui-li-icon">Active Warnings</a>
+					<a href="activeWarnings.php" data-ajax="false"><img src="icons/activeWarnings.png" alt="Active Warnings" class="ui-li-icon">Active Warnings</a>
 				</li>
 				<li>
-					<a href="report.php"><img src="icons/report.png" alt="Report" class="ui-li-icon">Report</a>
+					<a href="report.php" data-ajax="false"><img src="icons/report.png" alt="Report" class="ui-li-icon">Report</a>
 				</li>
 				<li>
-					<a href="history.php"><img src="icons/history.png" alt="History" class="ui-li-icon">History</a>
+					<a href="history.php" data-ajax="false"><img src="icons/history.png" alt="History" class="ui-li-icon">History</a>
 				</li>
 				<li>
-					<a href="basicResponse.php"><img src="icons/basicResponse.png" alt="Response" class="ui-li-icon">Basic Response</a>
+					<a href="basicResponse.php" data-ajax="false"><img src="icons/basicResponse.png" alt="Response" class="ui-li-icon">Basic Response</a>
 				</li>
 				<li>
-					<a href="bloodDonationSpot.php" ><img src="icons/bloodDonation.png" alt="Blood Donation" class="ui-li-icon">Blood Donation</a>
+					<a href="bloodDonationSpot.php" data-ajax="false"><img src="icons/bloodDonation.png" alt="Blood Donation" class="ui-li-icon">Blood Donation</a>
 				</li>
 				<li>
-					<a href="highRiskAreas.php" ><img src="icons/highRiskAreas.png" alt="Black Spots" class="ui-li-icon">High Risk Areas</a>
+					<a href="highRiskAreas.php " data-ajax="false" ><img src="icons/highRiskAreas.png" alt="Black Spots" class="ui-li-icon">High Risk Areas</a>
 				</li>
 				<li>
-					<a href="settings.php"><img src="icons/settings.png" alt="Settings" class="ui-li-icon">Settings</a>
+					<a href="settings.php" data-ajax="false"><img src="icons/settings.png" alt="Settings" class="ui-li-icon">Settings</a>
 				</li>
                                 <li>
 					<a href="reachUs.php" data-ajax="false"><img src="icons/reachUs.png"  alt="Reach Us" class="ui-li-icon">Contact Us</a>
