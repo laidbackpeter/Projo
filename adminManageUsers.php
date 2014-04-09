@@ -14,21 +14,22 @@
                 bottom: 0px;
                 width: 100%;
             }
+            table,td,th
+            {
+                border:1px solid black;
+                background-color:gainsboro;
+                color:black;
+            }
+            table
+            {
+                width:100%;
+            }
+            th
+            {   background-color:gray;
+                color:white;
+                height:50px;
+            }
 
-            .odd {
-                background-color : black;
-                color : white;
-                text-align : center;
-                height : 30px;
-                padding-top : 5px;
-            }
-            .even {
-                background-color : gray;
-                color : white;
-                text-align : center;
-                height : 30px;
-                padding-top : 5px;
-            }
         </style>
 
     </head>
@@ -39,36 +40,58 @@
 
         </div><!-- /header -->
 
-        <br>
-
         <div data-role="content">
 
-            <h3> Users </h3>
-            <div class= ui-grid-b>
-                <div class="ui-block-a odd">Elem 1.1</div>
-                <div class="ui-block-b odd">Elem 1.2</div>
-                <div class="ui-block-c odd">Elem 1.3</div>
-                <div class="ui-block-a even">Elem 2.1</div>
-                <div class="ui-block-b even">Elem 2.2</div>
-                <div class="ui-block-c even">Elem 2.3</div>
-                <div class="ui-block-a odd">Elem 3.1</div>
-                <div class="ui-block-b odd">Elem 3.2</div>
-                <div class="ui-block-c odd">Elem 3.3</div>
-                <div class="ui-block-a even">Elem 4.1</div>
-                <div class="ui-block-b even">Elem 4.2</div>
-                <div class="ui-block-c even">Elem 4.3</div>
-                <div class="ui-block-a odd">Elem 5.1</div>
-                <div class="ui-block-b odd">Elem 5.2</div>
-                <div class="ui-block-c odd">Elem 5.3</div>
-            </div>
+            <div data-role=content>
+                <h3> User Details </h3>
+                <form data-ajax="false" action="adminManageUsersProcess.php" method="POST">
+                    <?php
+                    $con = mysqli_connect("localhost", "peter", "ndesh0140", "vigil");
+// Check connection
+                    if (mysqli_connect_errno()) {
+                        echo "Failed to connect to MySQL: " . mysqli_connect_error();
+                    }
 
-        </div></br></br>
+                    $result = mysqli_query($con, "SELECT * FROM registration");
 
-        <div data-theme="a" data-role="footer" data-position="fixed" data-id="footer">
-            <a class="ui-btn-right" href="logout.php">Logout</a>
-            <h3>Copyright 2014</h3>
-        </div>
 
-    </div><!-- /page -->
-</body>
+                    echo "<table border='3'>
+                    <tr>
+                    <th>Select</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Number</th>
+                    <th>Email Option</th>
+                    <th>SMS Option</th>
+                    </tr>";
+
+
+                    while ($row = mysqli_fetch_array($result)) {
+
+                        echo "<tr>";
+                        echo "<td><input type='checkbox' name='item[]' value='".$row['Email']."'</td>";
+                        echo "<td>" . $row['Name'] . "</td>";
+                        echo "<td>" . $row['Email'] . "</td>";
+                        echo "<td>" . $row['phoneNumber'] . "</td>";
+                        echo "<td>" . $row['emailFlag'] . "</td>";
+                        echo "<td>" . $row['smsFlag'] . "</td>";
+                        echo "</tr>";
+                    }
+
+                    echo "</table>";
+                    echo "<input type='reset' data-theme='b' name='reset' id='reset' value='Cancel' data-inline='true'>";
+                    echo "<input type='submit' data-theme='b' name='submit' id='submit' value='Delete' data-inline='true'>";
+
+                    mysqli_close($con);
+                    ?>
+
+                </form>
+
+                <div data-theme="a" data-role="footer" data-position="fixed" data-id="footer">
+                    <a class="ui-btn-right" href="logout.php">Logout</a>
+                    <h3>Copyright 2014</h3>
+                </div>
+
+            </div><!-- /page -->
+    </body>
 </html>

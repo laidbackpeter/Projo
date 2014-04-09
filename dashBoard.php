@@ -30,13 +30,13 @@
 			<ul data-role="listview" data-inset="true" data-filter="false">
 
 				<li>
-					<a href="adminReports.php">Reports</a>
+					<a href="adminReports.php" data-ajax="false">Reports</a>
 				</li>
 				<li>
-					<a href="adminManageUsers.php">Users</a>
+					<a href="adminManageUsers.php" data-ajax="false">Users</a>
 				</li>
 				<li>
-					<a href="adminFeedback.php">Feedback</a>
+					<a href="adminFeedback.php" data-ajax="false">Feedback</a>
 				</li>
                         </ul>
 		</div></br></br>

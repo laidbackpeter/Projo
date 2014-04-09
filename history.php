@@ -17,6 +17,7 @@
                 bottom: 0px;
                 width: 100%;
             }
+            
         </style>
     </head>
     <body>
@@ -33,7 +34,44 @@
         <div data-role="content">
             <p>
             <div id="text">
-                <p>No previous alerts</p>
+                <?php
+                $con = mysqli_connect("localhost", "peter", "ndesh0140", "vigil");
+// Check connection
+                if (mysqli_connect_errno()) {
+                    echo "Failed to connect to MySQL: " . mysqli_connect_error();
+                }
+
+                $result = mysqli_query($con, "SELECT * FROM tweets WHERE alertFlag = 1 ORDER BY createdAt ASC");
+
+                while ($row = mysqli_fetch_array($result)) {
+
+                    echo "<div  style='border: 6px  outset black;' id='feedback'>";
+                    echo "<p>";
+                    echo "<table border='0'>
+                    <tr>
+                    <th></th>
+                    <th></th>
+                    </tr>";
+                    echo "<tr>";
+                    echo "<td>By</td> "; 
+                    echo "<td>- "  .  $row['screenName'] . "</td>";
+                    echo "</tr>";
+                    echo "<tr>";
+                    echo "<td>Alert</td> "; 
+                    echo "<td>- "  .  $row['Tweet'] . "</td>";
+                    echo "</tr>";
+                    echo "<tr>";
+                    echo "<td>On</td> "; 
+                    echo "<td>- "  .  $row['createdAt'] . "</td>";
+                    echo "</tr>";
+                    echo "</table>";
+                    echo "<br> </div>";
+                }
+
+
+
+                mysqli_close($con);
+                ?>
 
             </div>
 

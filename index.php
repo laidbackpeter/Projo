@@ -38,12 +38,14 @@
 				<li>
 					<a href="bloodDonationSpot.php" ><img src="icons/bloodDonation.png" alt="Blood Donation" class="ui-li-icon">Blood Donation</a>
 				</li>
-				
+				<li>
+					<a href="highRiskAreas.php" ><img src="icons/highRiskAreas.png" alt="Black Spots" class="ui-li-icon">High Risk Areas</a>
+				</li>
 				<li>
 					<a href="settings.php"><img src="icons/settings.png" alt="Settings" class="ui-li-icon">Settings</a>
 				</li>
                                 <li>
-					<a href="reachUs.php"><img src="icons/reachUs.png" alt="Reach Us" class="ui-li-icon">Contact Us</a>
+					<a href="reachUs.php" data-ajax="false"><img src="icons/reachUs.png"  alt="Reach Us" class="ui-li-icon">Contact Us</a>
 				</li>
 			</ul>
 

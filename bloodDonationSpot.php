@@ -125,12 +125,12 @@
             <div data-role="content" id="content" data-theme="e" data-content-theme="e">
 
                 <div id="text">
-
+                    <p>No blood drives happening today. Check our contact us page for hospital details where you can always donate. Thank you</p>
                 </div>				
 
                 <h1>Text Directions</h1>
                 <div id="directionsPanel" style="width:100%;height:100%">
-
+                    
                 </div>
 
             </div>

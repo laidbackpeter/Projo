@@ -27,7 +27,7 @@
 
         <br>
         <div data-role="content" data-theme="a">
-            <form data-ajax="false" action="#" method="POST">
+            <form data-ajax="false" action="feedback.php" method="POST">
                 <div data-role="fieldcontain">
                     <label for="name">Name:</label>
                     <input type="text" value="" name="name" id="name" required placeholder='Enter name'/>

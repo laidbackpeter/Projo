@@ -11,121 +11,118 @@
         <script src="HighCharts/js/highcharts-more.js"></script>
         <script src="HighCharts/js/modules/exporting.js"></script>
         <script type="text/javascript">
+            var num;
+            
             $(function () {
+                
+               
+                $.getJSON('/vigil/reportUtilityUseDisplay.php', function(data){ 
+                    num = data.ReportUtil;
+                           
+                
+                    $('#container').highcharts({
 	
-                $('#container').highcharts({
-	
-                    chart: {
-                        type: 'gauge',
-                        plotBackgroundColor: null,
-                        plotBackgroundImage: null,
-                        plotBorderWidth: 0,
-                        plotShadow: false
-                    },
-	    
-                    title: {
-                        text: 'Speedometer'
-                    },
-	    
-                    pane: {
-                        startAngle: -150,
-                        endAngle: 150,
-                        background: [{
-                                backgroundColor: {
-                                    linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
-                                    stops: [
-                                        [0, '#FFF'],
-                                        [1, '#333']
-                                    ]
-                                },
-                                borderWidth: 0,
-                                outerRadius: '109%'
-                            }, {
-                                backgroundColor: {
-                                    linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
-                                    stops: [
-                                        [0, '#333'],
-                                        [1, '#FFF']
-                                    ]
-                                },
-                                borderWidth: 1,
-                                outerRadius: '107%'
-                            }, {
-                                // default background
-                            }, {
-                                backgroundColor: '#DDD',
-                                borderWidth: 0,
-                                outerRadius: '105%',
-                                innerRadius: '103%'
-                            }]
-                    },
-	       
-                    // the value axis
-                    yAxis: {
-                        min: 0,
-                        max: 200,
-	        
-                        minorTickInterval: 'auto',
-                        minorTickWidth: 1,
-                        minorTickLength: 10,
-                        minorTickPosition: 'inside',
-                        minorTickColor: '#666',
-	
-                        tickPixelInterval: 30,
-                        tickWidth: 2,
-                        tickPosition: 'inside',
-                        tickLength: 10,
-                        tickColor: '#666',
-                        labels: {
-                            step: 2,
-                            rotation: 'auto'
+                        chart: {
+                            type: 'gauge',
+                            plotBackgroundColor: null,
+                            plotBackgroundImage: null,
+                            plotBorderWidth: 0,
+                            plotShadow: false
                         },
+	    
                         title: {
-                            text: 'km/h'
+                            text: 'Usage of Report using Twitter Utility'
                         },
-                        plotBands: [{
-                                from: 0,
-                                to: 120,
-                                color: '#55BF3B' // green
-                            }, {
-                                from: 120,
-                                to: 160,
-                                color: '#DDDF0D' // yellow
-                            }, {
-                                from: 160,
-                                to: 200,
-                                color: '#DF5353' // red
-                            }]        
-                    },
+	    
+                        pane: {
+                            startAngle: -150,
+                            endAngle: 150,
+                            background: [{
+                                    backgroundColor: {
+                                        linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
+                                        stops: [
+                                            [0, '#FFF'],
+                                            [1, '#333']
+                                        ]
+                                    },
+                                    borderWidth: 0,
+                                    outerRadius: '109%'
+                                }, {
+                                    backgroundColor: {
+                                        linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
+                                        stops: [
+                                            [0, '#333'],
+                                            [1, '#FFF']
+                                        ]
+                                    },
+                                    borderWidth: 1,
+                                    outerRadius: '107%'
+                                }, {
+                                    // default background
+                                }, {
+                                    backgroundColor: '#DDD',
+                                    borderWidth: 0,
+                                    outerRadius: '105%',
+                                    innerRadius: '103%'
+                                }]
+                        },
+	       
+                        // the value axis
+                        yAxis: {
+                            min: 0,
+                            max: 1000,
+	        
+                            minorTickInterval: 'auto',
+                            minorTickWidth: 1,
+                            minorTickLength: 10,
+                            minorTickPosition: 'inside',
+                            minorTickColor: '#666',
 	
-                    series: [{
-                            name: 'Speed',
-                            data: [80],
-                            tooltip: {
-                                valueSuffix: ' km/h'
-                            }
-                        }]
+                            tickPixelInterval: 30,
+                            tickWidth: 2,
+                            tickPosition: 'inside',
+                            tickLength: 10,
+                            tickColor: '#666',
+                            labels: {
+                                step: 2,
+                                rotation: 'auto'
+                            },
+                            title: {
+                                text: 'Usage'
+                            },
+                            plotBands: [{
+                                    from: 0,
+                                    to: 300,
+                                    color: '#55BF3B' // green
+                                }, {
+                                    from: 300,
+                                    to: 640,
+                                    color: '#DDDF0D' // yellow
+                                }, {
+                                    from: 640,
+                                    to: 1000,
+                                    color: '#DF5353' // red
+                                }]        
+                        },
 	
-                }, 
-                // Add some life
-                function (chart) {
-                    if (!chart.renderer.forExport) {
-                        setInterval(function () {
-                            var point = chart.series[0].points[0],
-                            newVal,
-                            inc = Math.round((Math.random() - 0.5) * 20);
-		        
-                            newVal = point.y + inc;
-                            if (newVal < 0 || newVal > 200) {
-                                newVal = point.y - inc;
-                            }
-		        
-                            point.update(newVal);
-		        
-                        }, 3000);
-                    }
+                        series: [{
+                                name: 'Usage',
+                                data: [Number(num)],
+                                tooltip: {
+                                    valueSuffix: 'People'
+                                }
+                            }]
+	
+                    });
                 });
+                
             });
+               
+            
+              
+            
+               
+          
         </script>
         <style>
             .footer-wrapper {
@@ -140,7 +137,7 @@
         <div data-role="header" id="header" class="ui-header ui-bar-a" role="banner">
             <a href="#" class="ui-btn-left ui-btn ui-btn-icon-left ui-btn-corner-all ui-shadow ui-btn-up-a" data-rel="back" data-icon="arrow-l" data-theme="a"><span class="ui-btn-inner ui-btn-corner-all" aria-hidden="true"><span class="ui-btn-text">Back</span><span class="ui-icon ui-icon-arrow-l ui-icon-shadow"></span></span></a>
             <h1 class="ui-title" tabindex="0" role="heading" aria-level="1">Report Utility</h1>
-            
+
         </div><!-- /header -->
 
         <br>
