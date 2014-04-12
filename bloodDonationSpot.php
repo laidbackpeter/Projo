@@ -124,6 +124,7 @@ $result = mysql_query($sql20) or die("Error: " . mysql_error());
                             directionsService.route(request, function(response, status) {
 
                                 if (status == google.maps.DirectionsStatus.OK) {
+                                    directionsDisplay.setPanel(document.getElementById('directionsPanel'));
 
                                     directionsDisplay.setDirections(response);
                                 }

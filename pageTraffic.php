@@ -42,8 +42,8 @@
                                     color: 'black',
                                     softConnector: true
                                 },
-                                neckWidth: '22%',
-                                neckHeight: '27%'
+                                neckWidth: '20%',
+                                neckHeight: '22%'
                 
                                 //-- Other available options
                                 // height: pixels or percent
@@ -56,7 +56,7 @@
                         series: [{
                                 name: 'Users',
                                 data: [
-                                    ['Active Warnings page',   activeWarning],
+                                    ['Warnings page',   activeWarning],
                                     ['Blood Donation page',       bloodDonation],
                                     ['Basic Response page', basicResponse],
                                     ['Reporting page',    reporting],
