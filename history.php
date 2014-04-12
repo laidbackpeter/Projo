@@ -1,4 +1,15 @@
-<?php session_start(); ?>
+<?php session_start();
+$host="localhost"; // Host name 
+$username="peter"; // Mysql username 
+$password="ndesh0140"; // Mysql password 
+$db_name="vigil"; // Database name 
+
+mysql_connect("$host", "$username", "$password")or die("cannot connect"); 
+mysql_select_db("$db_name")or die("cannot select DB");
+
+$sql20 = "UPDATE traffic SET counts=counts + 1 WHERE pageId=8";
+$result = mysql_query($sql20) or die("Error: ".mysql_error());
+?>
 <!DOCTYPE HTML>
 <html>
     <head>

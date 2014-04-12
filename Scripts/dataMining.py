@@ -15,8 +15,8 @@ def res():
 
 def main():
     cursor = db.cursor()
-    #accounts = ["@KenyaRedCross", "@StJohnsKenya", "@CodeBlackMobAlt"]
-    accounts = ["@CodeBlackMobAlt"]
+    #accounts = ["@KenyaRedCross", "@StJohnsKenya", "@EMS_Kenya" , "@CodeBlackMobAlt"]
+    accounts = ["@ProjectVigil"]
     for a in accounts:
         try:
             sql = "SELECT * FROM configs WHERE account = '%s'" % (a)
@@ -67,7 +67,7 @@ def main():
                             print "\n" + rawTweet, a , "\n", Alert
                             counter = pos.index(tups) + 1
                             print pos[counter]
-                            location = (pos[counter][0], ", Nairobi, Kenya")
+                            location = (pos[counter][0], " , Nairobi , Kenya")
                             resultsGeo = Geocoder.geocode(location)
                             Latitude = resultsGeo.coordinates[0]
                             Longitude = resultsGeo.coordinates[1]
@@ -84,16 +84,16 @@ def main():
                             Alert = find_words(rawTweet, 'blood donation')
                             print "\n" + rawTweet, a, "\n", Alert
                             counter = pos.index(tups) + 1
-                            print pos[counter]
-                            location = (pos[counter][0], ", Nairobi, Kenya")
+                            print pos[counter][0]
+                            location = (pos[counter][0], " , Nairobi , Kenya")
                             resultsGeo = Geocoder.geocode(location)
                             Latitude = resultsGeo.coordinates[0]
                             Longitude =  resultsGeo.coordinates[1]
                             flagD = 1
                             print(resultsGeo.coordinates)
 
-                sql2 ="INSERT INTO tweets(tweetId,tweet,screenName,createdAt,alertFlag,bloodDonationFlag,locationLat,locationLong,alert,notificationFlag) VALUES ( '%d', '%s', '%s' , '%s' , '%d' , '%d' , '%s' , '%s' ,'%s','%d')" % \
-                      (number, tweet['text'].encode('utf-8'), a, createdAt, flagA, flagD, Latitude, Longitude, Alert[0],0)
+                sql2 ="INSERT INTO tweets(tweetId,Tweet,Location,screenName,createdAt,alertFlag,bloodDonationFlag,locationLat,locationLong,alert,notificationFlag) VALUES ( '%d', '%s', '%s' , '%s' , '%s' , '%d' , '%d' , '%s' , '%s' ,'%s','%d')" % \
+                      (number, tweet['text'].encode('utf-8'), pos[counter][0], a, createdAt, flagA, flagD, Latitude, Longitude, Alert[0],0)
 
                 cursor.execute(sql2)
 

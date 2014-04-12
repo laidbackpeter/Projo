@@ -53,6 +53,8 @@
                         </div>
                         <input type="submit" data-theme="b" name="submit" id="submit" value="Submit">
                         <input type="reset" data-theme="b" name="cancel" id="cancel" value="Cancel">
+                        <br>
+                        <div> <a href="login.php">Login</a></div>
                     </fieldset>
                 </form>                              
             </div>

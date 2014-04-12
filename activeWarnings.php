@@ -1,4 +1,16 @@
-<?php session_start(); ?>
+<?php
+session_start();
+$host = "localhost"; // Host name 
+$username = "peter"; // Mysql username 
+$password = "ndesh0140"; // Mysql password 
+$db_name = "vigil"; // Database name 
+
+mysql_connect("$host", "$username", "$password") or die("cannot connect");
+mysql_select_db("$db_name") or die("cannot select DB");
+
+$sql20 = "UPDATE traffic SET counts=counts + 1 WHERE pageId=1";
+$result = mysql_query($sql20) or die("Error: " . mysql_error());
+?>
 <!DOCTYPE HTML>
 <html>
     <head>
@@ -45,75 +57,76 @@
                             alertLoc = new google.maps.LatLng(data.lat, data.lon);
                             console.log("hhvb"+alertLoc);
                             
-                             citymap['nairobi'] = {
-                            center : alertLoc
+                            citymap['nairobi'] = {
+                                center : alertLoc
                             
                             };
                             var cityCircle;
                        
 
-                        function getLocation() { {
-                                navigator.geolocation.getCurrentPosition(onSuccess, onError, {
-                                    maximumAge : 0,
-                                    timeout : 100000,
-                                    enableHighAccuracy : true
-                                });
-                            }
+                            function getLocation() { {
+                                    navigator.geolocation.getCurrentPosition(onSuccess, onError, {
+                                        maximumAge : 0,
+                                        timeout : 100000,
+                                        enableHighAccuracy : true
+                                    });
+                                }
 
                            
-                            function onSuccess(position) {
-                              //myPosition = position.coords.latitude + "," + position.coords.longitude;
+                                function onSuccess(position) {
+                                    //myPosition = position.coords.latitude + "," + position.coords.longitude;
                                 
                                 
-                                var myLatlng =  new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+                                    var myLatlng =  new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
                             
-                                var marker = new google.maps.Marker({
-                                    position: myLatlng,
-                                    map: map,
-                                    animation: google.maps.Animation.BOUNCE,
-                                    title:"Your Position"
-                                });
-                                marker.setMap(map); 
+                                    var marker = new google.maps.Marker({
+                                        position: myLatlng,
+                                        map: map,
+                                        animation: google.maps.Animation.BOUNCE,
+                                        title:"Your Position"
+                                    });
+                                    marker.setMap(map); 
 						
                                 
                              
-                            }
+                                }
 
                            
-                            function onError(error) {
-                                alert('code: ' + error.code + '\n' + 'message: ' + error.message + '\n');
-                            }
+                                function onError(error) {
+                                    alert('code: ' + error.code + '\n' + 'message: ' + error.message + '\n');
+                                }
 
-                        }
-                        
-                        function initializeMap(lat, lng) {
-                            var latlng = new google.maps.LatLng(lat, lng);
-                            var myOptions = {
-                                zoom : 11,
-                                center : latlng,
-                                mapTypeId : google.maps.MapTypeId.ROADMAP
-                            };
-                            $('#map_canvas').css("height", "300px").css("padding", "0px");
-                            map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
-                            
-                            console.log("num" + Object.keys(citymap).length );
-                            for (var city in citymap) {
-                                var populationOptions = {
-                                    strokeColor : '#FF0000',
-                                    strokeOpacity : 0.8,
-                                    strokeWeight : 2,
-                                    fillColor : '#6854C2',
-                                    fillOpacity : 0.35,
-                                    map : map,
-                                    center : citymap[city].center,
-                                    radius : 400
-                                };
-                                // Add the circle for this city to the map.
-                                cityCircle = new google.maps.Circle(populationOptions);
                             }
-                        }
-                        getLocation();
-                        initializeMap(-1.274309, 36.822631);
+                        
+                            function initializeMap(lat, lng) {
+                                var latlng = new google.maps.LatLng(lat, lng);
+                                var myOptions = {
+                                    zoom : 11,
+                                    center : latlng,
+                                    mapTypeId : google.maps.MapTypeId.ROADMAP
+                                };
+                                $('#map_canvas').css("height", "300px").css("padding", "0px");
+                                map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+                            
+                                console.log("num" + Object.keys(citymap).length );
+                                for (var city in citymap) {
+                                    var populationOptions = {
+                                        strokeColor : '#FF0000',
+                                        strokeOpacity : 0.8,
+                                        strokeWeight : 2,
+                                        fillColor : '#6854C2',
+                                        fillOpacity : 0.35,
+                                        map : map,
+                                        center : citymap[city].center,
+                                        radius : 400
+                                    };
+                                    // Add the circle for this city to the map.
+                                    cityCircle = new google.maps.Circle(populationOptions);
+                                    console.log("Circle add");
+                                }
+                            }
+                            getLocation();
+                            initializeMap(-1.274309, 36.822631);
                      
                         });
                     

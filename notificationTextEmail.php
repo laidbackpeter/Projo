@@ -9,7 +9,8 @@ mysql_connect("$host", "$username", "$password") or die("cannot connect");
 mysql_select_db("$db_name") or die("cannot select DB");
 $telNumber;
 $tweetId;
-$text;
+$text1;
+$text2;
 
 
 function displayAlert() {
@@ -18,13 +19,13 @@ function displayAlert() {
     $result1 = mysql_query($sql1);
     while ($row = mysql_fetch_array($result1)) {
         if ($row['alertFlag'] == 1 and $row['notificationFlag'] == 0 and date("Y-m-d", strtotime($row['createdAt'])) == date("Y-m-d")) {
-            echo "A confirmed " . $row['alert'] . " has occurred at spot marked X. Proceed with caution and give emergency authorities right of way. Follow " . $row['screenName'] . " for more info." . "\n \n" . "Here is the raw tweet: " . $row['Tweet'] . "\n \n";
-            $text = "A confirmed " . $row['alert'] . " has occurred at spot marked X. Proceed with caution and give emergency authorities right of way. Follow " . $row['screenName'] . " for more info." . "\n \n" . "Here is the raw tweet: " . $row['Tweet'] . "\n \n";
+            echo "A confirmed " . $row['alert'] . " has occurred at the encircled spot. Proceed with caution and give emergency authorities right of way. Follow " . $row['screenName'] . " for more info." . "\n \n" . "Here is the raw tweet: " . $row['Tweet'] . "\n \n";
+            $text1 = "A confirmed " . $row['alert'] . " has occurred at the encircled spot. Proceed with caution and give emergency authorities right of way. Follow " . $row['screenName'] . " for more info." . "\n \n" . "Here is the raw tweet: " . $row['Tweet'];
             $tweetId = $row['tweetId'];
-           
-           
-            
-            
+
+
+
+
             $sql2 = "SELECT * FROM registration";
             $result2 = mysql_query($sql2);
 
@@ -40,13 +41,13 @@ function displayAlert() {
 
                     $to = $row2['Email'];
                     $subject = 'Danger Notification !!!';
-                    $message = $text;
-                    $headers = 'From: codeblackmobilealert@gmail.com' . "\r\n" .
-                            'Reply-To: codeblackmobilealert@gmail.com';
+                    $message = $text1;
+                    $headers = 'From: vigil.sci2014@gmail.com' . "\r\n" .
+                            'Reply-To: vigil.sci2014@gmail.com';
 
 
                     mail($to, $subject, $message, $headers);
-                }
+              }
                 if ($row2['smsFlag'] == "checked") {
                     require_once('AfricasTalkingGateway.php');
 
@@ -60,7 +61,7 @@ function displayAlert() {
                     $prefix2 = 254;
                     $recipients = $prefix1 . $prefix2 . $telNumber;
 // And of course we want our recipients to know what we really do
-                    $message = "This is peter ndegwa testing his project, do not reply. Alert!!!";
+                    $message = $text1;
 
 // Create a new instance of our awesome gateway class
                     $gateway = new AfricasTalkingGateway($username, $apikey);
@@ -76,6 +77,7 @@ function displayAlert() {
                             echo " Status: " . $result->status;
                             echo " MessageId: " . $result->messageId;
                             echo " Cost: " . $result->cost . "\n";
+                            echo "for alerts";
                         }
                     } catch (AfricasTalkingGatewayException $e) {
                         echo "Encountered an error while sending: " . $e->getMessage();
@@ -94,15 +96,15 @@ function displayAlert() {
 function displayDonation() {
     $sql3 = "SELECT * FROM tweets";
     $result3 = mysql_query($sql3);
-    
-    
+
+
     while ($row = mysql_fetch_array($result3)) {
 
         if ($row['bloodDonationFlag'] == 1 and $row['notificationFlag'] == 0 and date("Y-m-d", strtotime($row['createdAt'])) == date("Y-m-d")) {
 
-            echo "A confirmed " . $row['alert'] . " has occurred at spot marked X. Proceed with caution and give emergency authorities right of way. Follow " . $row['screenName'] . " for more info." . "\n \n" . "Here is the raw tweet: " . $row['Tweet'] . "\n \n";
+            echo "A blood donation drive is happening at place marked B. Follow the directions below from your current position. For more information follow " . $row['screenName'] . "\n \n" . "Here is the raw tweet: " . $row['Tweet'] . "\n \n";
 
-            $text = "A confirmed " . $row['alert'] . " has occurred at spot marked X. Proceed with caution and give emergency authorities right of way. Follow " . $row['screenName'] . " for more info." . "\n \n" . "Here is the raw tweet: " . $row['Tweet'] . "\n \n";
+            $text2 = "A blood donation drive is happening at place marked B. Follow the directions below from your current position. For more information follow " . $row['screenName'] . "\n \n" . "Here is the raw tweet: " . $row['Tweet'] . "\n \n";
 
             $tweetId = $row['tweetId'];
             //die($tweetId);
@@ -118,13 +120,12 @@ function displayDonation() {
 
                     $to = $row2['Email'];
                     $subject = 'Blood Donation Notification';
-                    $message = $text;
-                    $headers = 'From: codeblackmobilealert@gmail.com' . "\r\n" .
-                            'Reply-To: codeblackmobilealert@gmail.com';
+                    $message = $text2;
+                    $headers = 'From: vigil.sci2014@gmail.com' . "\r\n" .
+                            'Reply-To: vigil.sci2014@gmail.com';
 
-
-                    mail($to, $subject, $message, $headers);
-                }
+                 mail($to, $subject, $message, $headers);
+              }
                 if ($row2['smsFlag'] == "checked") {
                     require_once('AfricasTalkingGateway.php');
 
@@ -137,15 +138,15 @@ function displayDonation() {
                     $prefix1 = "+";
                     $prefix2 = 254;
                     $recipients = $prefix1 . $prefix2 . $telNumber;
-
-
-// And of course we want our recipients to know what we really do
-                    $message = "This is peter ndegwa testing his project, do not reply. Donation!!!";
-
-// Create a new instance of our awesome gateway class
+//
+//
+//// And of course we want our recipients to know what we really do
+                    $message = $text2;
+//
+//// Create a new instance of our awesome gateway class
                     $gateway = new AfricasTalkingGateway($username, $apikey);
-
-// Any gateway errors will be captured by our custom Exception class below, 
+//
+//// Any gateway errors will be captured by our custom Exception class below, 
 // so wrap the call in a try-catch block
                     try {
                         // Thats it, hit send and we'll take care of the rest. 
@@ -156,6 +157,7 @@ function displayDonation() {
                             echo " Status: " . $result->status;
                             echo " MessageId: " . $result->messageId;
                             echo " Cost: " . $result->cost . "\n";
+                           echo "for blood donation";
                         }
                     } catch (AfricasTalkingGatewayException $e) {
                         echo "Encountered an error while sending: " . $e->getMessage();

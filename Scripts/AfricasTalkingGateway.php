@@ -13,11 +13,10 @@ class AfricasTalkingGateway
   protected $_responseBody;
   protected $_responseInfo;
   
-  const SMS_URL               = 'https://api.africastalking.com/version1/messaging';
-  const VOICE_URL             = 'https://voice.africastalking.com/call';
-  const USER_DATA_URL         = 'https://api.africastalking.com/version1/user';
-  const SUBSCRIPTION_DATA_URL = 'https://api.africastalking.com/version1/subscription';
-
+  const SMS_URL        = 'https://api.africastalking.com/version1/messaging';
+  const VOICE_URL      = 'https://voice.africastalking.com/call';
+  const USER_DATA_URL  = 'https://api.africastalking.com/version1/user';
+  
   /*
    * Turn this on if you run into problems. It will print the raw HTTP response from our server
    */
@@ -126,21 +125,7 @@ class AfricasTalkingGateway
     }
     return $this->_responseBody->SMSMessageData->Messages;
   }
-  
-  public function fetchPremiumSubscriptions($shortCode_, $keyword_, $lastReceivedId_)
-  {
-    $username = $this->_username;
-    $this->_requestUrl  = self::SUBSCRIPTION_DATA_URL.'?username='.$username.'&shortCode='.$shortCode_;
-    $this->_requestUrl .= '&keyword='.$keyword_.'&lastReceivedId='.intval($lastReceivedId_);
-    
-    $this->execute('GET');      
-    if ( $this->_responseInfo['http_code'] != self::HTTP_CODE_OK ) {
-      throw new AfricasTalkingGatewayException($this->_responseBody->SubscriptionData->Message);
-    }
-    
-    return $this->_responseBody->SubscriptionData->Subscriptions;
-  }
-  
+
   public function getUserData()
   {
     $username = $this->_username;

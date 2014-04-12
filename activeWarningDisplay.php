@@ -12,7 +12,7 @@ $data = array();
 
 header('Content-Type: application/json');
 
-$sql1 = "SELECT * FROM tweets ORDER BY createdAt DESC";
+$sql1 = "SELECT * FROM tweets WHERE alertFlag = 1 ORDER BY tweetId DESC LIMIT 1 ";
 $result1 = mysql_query($sql1);
 while ($row = mysql_fetch_array($result1)) {
      date_default_timezone_set("Africa/Nairobi");

@@ -41,6 +41,9 @@
                                 <li>
                                         <a href="alertStats.php" data-ajax="false">Alert Stats</a>
 				</li>
+                                <li>
+                                        <a href="pageTraffic.php" data-ajax="false">Page Traffic</a>
+				</li>
                         </ul>
 		</div></br></br>
 

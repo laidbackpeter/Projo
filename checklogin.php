@@ -33,6 +33,9 @@ if($count==1){
     if ($myusername == "admin"){
         header("location:indexAdmin.php");
     }else {
+     $month = date('m');
+    $sql2 = "UPDATE activeusers SET amount=amount + 1 WHERE Id=$month";
+    $result = mysql_query($sql2) or die("Error: ".mysql_error());
     header("location:index.php");
         }
     

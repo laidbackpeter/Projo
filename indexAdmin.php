@@ -25,7 +25,7 @@
 
 				
                                 <li>
-					<a href="dashBoard.php"><img src="icons/adminDashboard.png" alt="dashboard" class="ui-li-icon">Dashboard</a>
+					<a href="dashBoard.php" data-ajax="false"><img src="icons/adminDashboard.png" alt="dashboard" class="ui-li-icon">Dashboard</a>
 				</li>
 			</ul>
 

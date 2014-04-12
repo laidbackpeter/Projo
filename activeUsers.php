@@ -10,7 +10,17 @@
         <script src="HighCharts/js/highcharts.js"></script>
         <script src="HighCharts/js/modules/exporting.js"></script>
         <script>
-            $(function () {
+            var values = [];
+            function displayUsers() {
+                
+                $.getJSON('/vigil/activeUsersDisplay.php', function(data){
+                                var i;
+                                
+                                for (i = 0; i < data.length; i++){
+                                    
+                                    values.push(Number(data[i][0]));
+                                }
+                               
                 $('#container').highcharts({
                     title: {
                         text: 'Monthly Average Users',
@@ -23,7 +33,7 @@
                     },
                     yAxis: {
                         title: {
-                            text: 'No of Users in *000'
+                            text: 'No of Users'
                         },
                         plotLines: [{
                                 value: 0,
@@ -32,7 +42,7 @@
                             }]
                     },
                     tooltip: {
-                        valueSuffix: 'thousand'
+                        valueSuffix: ''
                     },
                     legend: {
                         layout: 'vertical',
@@ -42,12 +52,15 @@
                     },
                     series: [{
                             name: 'Year 2014',
-                            data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6]
+                            data: values//Number(values)//[1,2,3,4,5,6,7,8,9,0,78,12]
                         } ]
                 });
+                
             });
-    
-
+            
+            }
+            
+            displayUsers();
         </script>
 
         <style>

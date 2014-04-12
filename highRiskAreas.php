@@ -1,4 +1,16 @@
-<?php session_start(); ?>
+<?php
+session_start();
+$host = "localhost"; // Host name 
+$username = "peter"; // Mysql username 
+$password = "ndesh0140"; // Mysql password 
+$db_name = "vigil"; // Database name 
+
+mysql_connect("$host", "$username", "$password") or die("cannot connect");
+mysql_select_db("$db_name") or die("cannot select DB");
+
+$sql20 = "UPDATE traffic SET counts=counts + 1 WHERE pageId=4";
+$result = mysql_query($sql20) or die("Error: " . mysql_error());
+?>
 <!DOCTYPE HTML>
 <html>
     <head>
@@ -21,14 +33,14 @@
             }
 
         </style>
-    
+
     </head>
     <body>
         <div data-role="page">
 
             <div data-role="header" id="header" class="ui-header ui-bar-a" role="banner">
                 <a href="#" class="ui-btn-left ui-btn ui-btn-icon-left ui-btn-corner-all ui-shadow ui-btn-up-a" data-rel="back" data-icon="arrow-l" data-theme="a"><span class="ui-btn-inner ui-btn-corner-all" aria-hidden="true"><span class="ui-btn-text">Back</span><span class="ui-icon ui-icon-arrow-l ui-icon-shadow"></span></span></a>
-                <h1 class="ui-title" tabindex="0" role="heading" aria-level="1">Active Warnings</h1>
+                <h1 class="ui-title" tabindex="0" role="heading" aria-level="1">High Risk Areas</h1>
                 <a href="index.php" data-role="button" data-icon="home" data-iconshadow="false"
                    data-direction="reverse" onclick="empty()" data-transition="slide"
                    data-iconpos="notext"  class="ui-btn-right">Home</a>
@@ -38,69 +50,87 @@
                 <div id="map_canvas">
 
                     <script>
-                         var map;                 
+                        var map;
+                        var addresses = []; 
+                        //var address;
+                         
+                         
+                         
                         function drawMarkers () {
-                            var map;
-                            var elevator;
-                            var myOptions = {
-                                zoom: 11,
-                                center: new google.maps.LatLng(-1.274309, 36.822631),
-                                mapTypeId: 'roadmap'
-                            };
-                            map = new google.maps.Map($('#map_canvas')[0], myOptions);
+                            $.getJSON('/vigil/highRiskAreaDisplay.php', function(data){
+                                var i;
+                                
+                                for (i = 0; i < data.length; i++){
+                                    
+                                    addresses.push(data[i][0]);
+                                }
+                                
+                                
+                               
+                                
+                                var map;
+                                var elevator;
+                                var myOptions = {
+                                    zoom: 11,
+                                    center: new google.maps.LatLng(-1.274309, 36.822631),
+                                    mapTypeId: 'roadmap'
+                                };
+                                map = new google.maps.Map($('#map_canvas')[0], myOptions);
+                                 
+                                //addresses = ['MuindiMbingu', 'BuruBuru', 'Roysambu','Kasarani','KimathiStreet'];
 
-                            var addresses = ['MuindiMbingu', 'BuruBuru', 'Roysambu','Kasarani','KimathiStreet'];
-
-                            for (var x = 0; x < addresses.length; x++) {
-                                $.getJSON('http://maps.googleapis.com/maps/api/geocode/json?address='+addresses[x]+'&sensor=false', null, function (data) {
-                                    var p = data.results[0].geometry.location
-                                    var latlng = new google.maps.LatLng(p.lat, p.lng);
-                                    new google.maps.Marker({
-                                        position: latlng,
-                                        icon: "icons/blue-dot.png",
-                                        map: map
-                                    });
+                                for (var x = 0; x < addresses.length; x++) {
+                                    $.getJSON('http://maps.googleapis.com/maps/api/geocode/json?address='+addresses[x]+'&sensor=false', null, function (data) {
+                                        var p = data.results[0].geometry.location
+                                        var latlng = new google.maps.LatLng(p.lat, p.lng);
+                                        new google.maps.Marker({
+                                            position: latlng,
+                                            icon: "icons/blue-dot.png",
+                                            map: map
+                                        });
                                    
 
-                                });
-                            }
-                            getLocation();
-                            function getLocation() { {
-                                navigator.geolocation.getCurrentPosition(onSuccess, onError, {
-                                    maximumAge : 0,
-                                    timeout : 100000,
-                                    enableHighAccuracy : true
-                                });
-                            }
+                                    });
+                                }
+                                getLocation();
+                                function getLocation() { {
+                                        navigator.geolocation.getCurrentPosition(onSuccess, onError, {
+                                            maximumAge : 0,
+                                            timeout : 100000,
+                                            enableHighAccuracy : true
+                                        });
+                                    }
 
                            
-                            function onSuccess(position) {
-                                //myPosition = position.coords.latitude + "," + position.coords.longitude;
+                                    function onSuccess(position) {
+                                        //myPosition = position.coords.latitude + "," + position.coords.longitude;
                                 
                                 
-                                var myLatlng =  new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+                                        var myLatlng =  new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
                             
-                                var marker = new google.maps.Marker({
-                                    position: myLatlng,
-                                    map: map,
-                                    animation: google.maps.Animation.BOUNCE,
-                                    title:"Your Position"
-                                });
-                                marker.setMap(map); 
+                                        var marker = new google.maps.Marker({
+                                            position: myLatlng,
+                                            map: map,
+                                            animation: google.maps.Animation.BOUNCE,
+                                            title:"Your Position"
+                                        });
+                                        marker.setMap(map); 
 						
                                 
                              
-                            }
+                                    }
 
                            
-                            function onError(error) {
-                                alert('code: ' + error.code + '\n' + 'message: ' + error.message + '\n');
-                            }
-                        }
+                                    function onError(error) {
+                                        alert('code: ' + error.code + '\n' + 'message: ' + error.message + '\n');
+                                    }
+                                }
+                            });
                         }
                         
+                        
                            
-                            drawMarkers();
+                        drawMarkers();
 
                       
                     </script>

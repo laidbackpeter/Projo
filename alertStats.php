@@ -33,6 +33,11 @@
                     KenyaRedCross_shooting = data.KenyaRedCross_shooting;
                     KenyaRedCross_fire = data.KenyaRedCross_fire;
                     KenyaRedCross_Blood = data.KenyaRedCross_Blood;  
+                    ProjectVigil_bombing = data.ProjectVigil_bombing;
+                    ProjectVigil_accident = data.ProjectVigil_accident;
+                    ProjectVigil_shooting = data.ProjectVigil_shooting;
+                    ProjectVigil_fire = data.ProjectVigil_fire;
+                    ProjectVigil_Blood = data.ProjectVigil_Blood;
                     
                    
                
@@ -65,9 +70,13 @@
                                 name: '@EMS_KENYA',
                                 data: [EMS_KENYA_bombing, EMS_KENYA_accident,EMS_KENYA_shooting,EMS_KENYA_fire,EMS_KENYA_Blood]
                             }, {
+                                name: '@ProjectVigil',
+                                data: [ProjectVigil_bombing, ProjectVigil_accident,ProjectVigil_shooting,ProjectVigil_fire,ProjectVigil_Blood]
+                            },{
                                 name: '@CodeBlackMobAlt',
                                 data: [CodeBlackMobAlt_bombing, CodeBlackMobAlt_accident,CodeBlackMobAlt_shooting,CodeBlackMobAlt_fire,CodeBlackMobAlt_Blood]
-                            }, {
+                            },                         
+                            {
                                 name: '@KenyaRedCross',
                                 data: [KenyaRedCross_bombing,KenyaRedCross_accident,KenyaRedCross_shooting,KenyaRedCross_fire,KenyaRedCross_Blood]
                             }]

@@ -12,7 +12,7 @@ header('Content-Type: application/json');
 
 $data = array();
 
-$accounts = array("@EMS_KENYA", "@CodeBlackMobAlt", "@KenyaRedCross");
+$accounts = array("@EMS_KENYA", "@CodeBlackMobAlt", "@KenyaRedCross" , "@ProjectVigil");
 foreach ($accounts as $value) {
     $alerts = array("bombing", "accident", "shooting", "fire", "Blood");
     foreach ($alerts as $threat) {

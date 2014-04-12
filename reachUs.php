@@ -1,4 +1,16 @@
-<?php session_start(); ?>
+<?php
+session_start();
+$host = "localhost"; // Host name 
+$username = "peter"; // Mysql username 
+$password = "ndesh0140"; // Mysql password 
+$db_name = "vigil"; // Database name 
+
+mysql_connect("$host", "$username", "$password") or die("cannot connect");
+mysql_select_db("$db_name") or die("cannot select DB");
+
+$sql20 = "UPDATE traffic SET counts=counts + 1 WHERE pageId=6";
+$result = mysql_query($sql20) or die("Error: " . mysql_error());
+?>
 <!DOCTYPE HTML>
 <html>
     <head>
@@ -38,17 +50,19 @@
                 </div> 
                 <div data-role="fieldcontain">                                      
                     <label for="textarea">Message:</label>
-                    
+
                 </div>
+                <div>
                 <textarea name="textarea" id="textarea" rows="20" cols="40"  required placeholder='Type'></textarea>
+                </div>
+                <div>
+                    <input type="submit" data-theme="b" name="submit" id="submit" value="Send">
+                    <br></br>
+                </div>
                 
-
-                <br>
-
-                <input type="submit" data-theme="b" name="submit" value="Send" />
             </form>
 
-        </div></br></br>
+        
 
     </div></br></br>
 
@@ -57,6 +71,5 @@
         <h3>Copyright 2014</h3>
     </div>
 
-</div><!-- /page -->
 </body>
 </html>
