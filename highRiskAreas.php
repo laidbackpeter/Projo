@@ -142,10 +142,10 @@ $result = mysql_query($sql20) or die("Error: " . mysql_error());
             <br>
             <br>
 
-            <div data-theme="a" data-role="footer" data-position="fixed" data-id="footer">
-                <a class="ui-btn-right" href="logout.php">Logout</a>
-                <h3>Copyright 2014</h3>
-            </div>
+          <div data-theme="a" data-role="footer" data-position="fixed" data-id="footer">
+    <a class="ui-btn-right" data-ajax="false" href="logout.php">Logout</a>
+    <h3>Copyright 2014</h3>
+</div>
 
         </div><!-- /page -->
     </body>
